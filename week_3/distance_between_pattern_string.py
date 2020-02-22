@@ -1,0 +1,2 @@
+
+def DistanceBetweenPatternAndStrings(dnas, pattern):
