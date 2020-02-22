@@ -1,5 +1,7 @@
 import sys
-sys.path.append('/Users/ashinzekene/code/personal-projects/bioinformatics/')
+import os
+
+sys.path.append(os.path.abspath(".."))
 
 from neighbors import Neighbors
 
