@@ -1,0 +1,5 @@
+{
+  "python.linting.enabled": true,
+  "python.linting.lintOnSave": true,
+  "python.pythonPath": "/usr/local/bin/python3"
+}

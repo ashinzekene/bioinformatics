@@ -1,4 +1,10 @@
-from profile_matrix import ProfileMatrix
+import sys
+import os
+import random
+
+sys.path.append(os.path.abspath(".."))
+
+from week_3.profile_matrix import ProfileMatrix
 
 def ProfileMostProbableKMer(profile, k, dna):
     max_profile_matrix = -1
