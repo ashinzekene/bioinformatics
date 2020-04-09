@@ -2,7 +2,6 @@ def Composition(dna, k):
     result = []
     for i in range(len(dna) - k+1):
         result.append(dna[i:i+k])
-        print(i, i+k)
     return result
 
 if __name__ == "__main__":
