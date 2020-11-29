@@ -1,0 +1,26 @@
+Skew Points 
+3764856 3764858 
+
+Too many possible kmers with 0 mismatch: Occurences: 984
+
+Too many possible kmers with 0 mismatch: Occurences: 984
+
+Max KMers at min skew point 3764856 with 1 mismatch:
+ ['CCGGAAGCT', 'AGCTTCCGG'] 
+Occurences: 2
+
+Max KMers at min skew point 3764858 with 1 mismatch:
+ ['CCGGAAGCT', 'AGCTTCCGG'] 
+Occurences: 2
+
+Max KMers at min skew point 3764856 with 2 mismatch:
+ ['TTTTCAGCG', 'CGCTGAAAA'] 
+Occurences: 5
+
+Max KMers at min skew point 3764858 with 2 mismatch:
+ ['TTTTCAGCG', 'CGCTGAAAA'] 
+Occurences: 5
+
+
+KMers :
+ ['CCGGAAGCT', 'AGCTTCCGG', 'TTTTCAGCG', 'CGCTGAAAA']
