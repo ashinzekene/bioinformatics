@@ -76,13 +76,13 @@ if __name__ == "__main__":
     b = "PENALTY"
     ru = 5
     path = "./datasets/dataset_247_10.txt"
-    # with open(path) as f:
-    #     a = f.readline().strip()
-    #     b = f.readline().strip()
+    with open(path) as f:
+        a = f.readline().strip()
+        b = f.readline().strip()
 
     max_alignment_score, string_a, string_b = LocalAlignment(a, b, ru)
-    # with open("./results/local_alignment.txt", "w") as f:
-    #     f.write(str(max_alignment_score) + "\n")
-    #     f.write(string_a + "\n")
-    #     f.write(string_b + "\n")
+    with open("./results/local_alignment.txt", "w") as f:
+        f.write(str(max_alignment_score) + "\n")
+        f.write(string_a + "\n")
+        f.write(string_b + "\n")
 

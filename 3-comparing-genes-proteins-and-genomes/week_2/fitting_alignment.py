@@ -1,4 +1,4 @@
-def LocalAlignment(a, b, ru):
+def FittingAlignment(a, b, ru):
     la = len(a)
     lb = len(b)
 
@@ -33,7 +33,7 @@ def LocalAlignment(a, b, ru):
     max_val = scores_matrix[0][-1]
     max_index = 0
     for i in range(la+1):
-        if scores_matrix[i][-1] >= max_val:
+        if scores_matrix[i][-1] > max_val:
             max_val = scores_matrix[i][-1]
             max_index = i
 
@@ -55,12 +55,6 @@ def LocalAlignment(a, b, ru):
             result_a = "-" + result_a
             result_b = b[j-1] + result_b
             j-=1
-    if i > 0:
-        result_a = a[i-1] + result_a 
-        result_b = "-" + result_b
-    if j > 0:
-        result_b = b[j-1] + result_b 
-        result_a = "-" + result_a
 
     return max_val, result_a, result_b
 
@@ -69,14 +63,14 @@ if __name__ == "__main__":
     a = "GTAGGCTTAAGGTTA"
     b = "TAGATA"
     ru = 1
-    # path = "./datasets/dataset_248_5.txt"
-    # with open(path) as f:
-    #     a = f.readline().strip()
-    #     b = f.readline().strip()
+    path = "./datasets/dataset_248_5.txt"
+    with open(path) as f:
+        a = f.readline().strip()
+        b = f.readline().strip()
 
-    max_alignment_score, string_a, string_b = LocalAlignment(a, b, ru)
+    max_alignment_score, string_a, string_b = FittingAlignment(a, b, ru)
     print(max_alignment_score, string_a, string_b)
-    # with open("./results/fitting_alignment.txt", "w") as f:
-    #     f.write(str(max_alignment_score) + "\n")
-    #     f.write(string_a + "\n")
-    #     f.write(string_b + "\n")
+    with open("./results/fitting_alignment.txt", "w") as f:
+        f.write(str(max_alignment_score) + "\n")
+        f.write(string_a + "\n")
+        f.write(string_b + "\n")

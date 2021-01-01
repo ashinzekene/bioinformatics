@@ -18,7 +18,9 @@ def global_alignment(a, b, ru):
         for j in range(1, len(scores_matrix[0])):
             symbol_a = a[i-1]
             symbol_b = b[j-1]
-            match = Blosom_62[symbol_a][symbol_b]
+            match = 0
+            if symbol_a == symbol_b:
+                match = 1
             insertion = scores_matrix[i-1][j] - ru
             deletion = scores_matrix[i][j-1] - ru
             match_mismatch = scores_matrix[i-1][j-1] + match
@@ -62,14 +64,13 @@ if __name__ == "__main__":
     a = "CGTAGGCTTAAGGTTA"
     b = "ATAGATA"
     ru = 5
-    # with open("./datasets/dataset_247_3.txt") as f:
-    #     a = f.readline().strip()
-    #     b = f.readline().strip()
+    with open("./datasets/dataset_247_3.txt") as f:
+        a = f.readline().strip()
+        b = f.readline().strip()
 
     max_alignment_score, string_a, string_b = global_alignment(a, b, ru)
-    print(max_alignment_score, string_a, string_b)
-    # with open("./results/global_alignment.txt", "w") as f:
-    #     f.write(str(max_alignment_score) + "\n")
-    #     f.write(string_a + "\n")
-    #     f.write(string_b + "\n")
+    with open("./results/global_alignment.txt", "w") as f:
+        f.write(str(max_alignment_score) + "\n")
+        f.write(string_a + "\n")
+        f.write(string_b + "\n")
 
