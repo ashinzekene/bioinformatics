@@ -78,4 +78,4 @@ ATGCATGCCGG
 **Construct a highest-scoring overlap alignment between two strings.**  
 **Input:** Two strings and a matrix score.  
 **Output:** A highest-scoring overlap alignment between the two strings as defined by the scoring matrix score.  
-[Solution](./overlap_alignment.py)gi
+[Solution](./overlap_alignment.py)
