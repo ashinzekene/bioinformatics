@@ -3,25 +3,25 @@ from blosom_62 import Blosom_62
 def GetScoreMatrix(v, w, indel):
     lv = len(v)
     lw = len(w)
-    scores_matrix = [[0] * (lw+1) for i in range(lv+1)]
-
+    previous_matrix = [0] * (lv+1)
+    current_matrix = [-indel] * (lv+1)
     for i in range(1, lv+1):
-        scores_matrix[i][0] = scores_matrix[i][0] - indel
+        previous_matrix[i] = previous_matrix[i-1] - indel
 
     for j in range(1, lw+1):
-        scores_matrix[0][j] = scores_matrix[0][j] - indel
-
-    for i in range(1, lv+1):
-        for j in range(1, lw+1):
+        for i in range(1, lv+1):
             v_val = v[i-1]
             w_val = w[j-1]
 
-            insertion = scores_matrix[i-1][j] - indel
-            deletion = scores_matrix[i][j-1] - indel
-            match_mismatch = scores_matrix[i-1][j-1] + Blosom_62[v_val][w_val]
-            scores_matrix[i][j] = max(insertion, deletion, match_mismatch)
+            insertion = previous_matrix[i] - indel
+            deletion = current_matrix[i-1] - indel
+            match_mismatch = previous_matrix[i-1] + Blosom_62[v_val][w_val]
+            current_matrix[i] = max(insertion, deletion, match_mismatch)
+        if j < lw:
+            previous_matrix = [i for i in current_matrix]
+            # Don't switch matrices at the end, we need both
 
-    matrix = [scores_matrix[i][-2:] for i in range(lv+1)] 
+    matrix = [[previous_matrix[i], current_matrix[i]] for i in range(lv+1)] 
     return matrix
 
 def GetMiddleNode(middle_column):
@@ -51,11 +51,11 @@ def MiddleEdge(v, w, indel):
     max_value = max(insertion, deletion, match_mismatch)
 
     if max_value == insertion:
-        return (mid_index, middle_col_index), (mid_index, middle_col_index+1)
+        return (mid_index, middle_col_index), (mid_index, middle_col_index+1), "-"
     elif max_value == deletion:
-        return (mid_index, middle_col_index), (mid_index+1, middle_col_index)
+        return (mid_index, middle_col_index), (mid_index+1, middle_col_index), "|"
     else:
-        return (mid_index, middle_col_index), (mid_index+1, middle_col_index+1)
+        return (mid_index, middle_col_index), (mid_index+1, middle_col_index+1), "+"
 
     return "IMPOSSIBLE ;-)"
 
@@ -68,6 +68,6 @@ if __name__ == "__main__":
     with open(path) as f:
         v = f.readline().strip()
         w = f.readline().strip()
-    edge1, edge2 = MiddleEdge(v, w, indel)
-    with open('./results/midle_edge.txt', 'w') as f:
+    edge1, edge2, _ = MiddleEdge(v, w, indel)
+    with open('./results/middle_edge.txt', 'w') as f:
         f.write(str(edge1) + " " + str(edge2))
